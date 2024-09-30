@@ -1,0 +1,16 @@
+service: processor
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:GetObject
+        - s3:PutObject
+      Resource: arn:aws:s3:::files-to-processs/*
+
+functions:
+  function1:
+    handler: index.handler
